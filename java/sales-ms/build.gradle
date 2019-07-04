@@ -1,0 +1,69 @@
+plugins {
+    id "java"
+    id "application"
+    id "org.springframework.boot" version "2.1.6.RELEASE"
+}
+
+dependencies {
+    compile project(":contract")
+}
+
+mainClassName = "com.vagner.sales.Application"
+
+allprojects {
+    sourceCompatibility = JavaVersion.VERSION_11
+
+    group "com.vagner.sales"
+    version "1.0-SNAPSHOT"
+
+    apply plugin: "java"
+    apply plugin: "io.spring.dependency-management"
+
+    repositories {
+        mavenCentral()
+//        maven {
+//            url "http://repo.spring.io/release"
+//        }
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:Greenwich.SR1"
+        }
+    }
+
+    ext {
+        ver = [
+                springBoot : "2.1.6.RELEASE",
+                springCloud: "2.1.2.RELEASE",
+                lombok     : "1.18.2",
+                junit      : "5.5.0"
+        ]
+    }
+
+//    configurations {
+//        compileOnly {
+//            extendsFrom annotationProcessor
+//        }
+//    }
+
+    dependencies {
+        implementation "org.springframework.boot:spring-boot-starter-actuator:${ver.springBoot}"
+        implementation "org.springframework.boot:spring-boot-starter-amqp:${ver.springBoot}"
+        implementation "org.springframework.boot:spring-boot-starter-web:${ver.springBoot}"
+        implementation "org.springframework.cloud:spring-cloud-starter-sleuth:${ver.springCloud}"
+        implementation "org.springframework.cloud:spring-cloud-starter-zipkin:${ver.springCloud}"
+
+        compileOnly "org.projectlombok:lombok:${ver.lombok}"
+        compileOnly group: 'javax.servlet.jsp', name: 'jsp-api', version: '2.2'
+        annotationProcessor "org.projectlombok:lombok:${ver.lombok}"
+
+        testCompile "org.projectlombok:lombok:${ver.lombok}"
+        testCompile "org.junit.jupiter:junit-jupiter-engine:${ver.junit}"
+        testCompile "org.junit.jupiter:junit-jupiter-api:${ver.junit}"
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}
