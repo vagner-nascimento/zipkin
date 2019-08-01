@@ -8,12 +8,12 @@ dependencies {
     compile project(":contract")
 }
 
-mainClassName = "com.vagner.sales.Application"
+mainClassName = "com.vagner.customers.Application"
 
 allprojects {
     sourceCompatibility = JavaVersion.VERSION_11
 
-    group "com.vagner.sales"
+    group "com.vagner.customers"
     version "1.0-SNAPSHOT"
 
     apply plugin: "java"

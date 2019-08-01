@@ -1,9 +1,9 @@
-package com.vagner.sales.contract;
+package com.vagner.sales.contract.post;
 
 import lombok.Builder;
 
 @Builder
-class PostSaleResponse {
+public class PostSaleResponse {
 
     private Long orderNumber;
 

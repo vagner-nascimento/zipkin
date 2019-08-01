@@ -1,4 +1,4 @@
-package com.vagner.sales.contract;
+package com.vagner.sales.contract.post;
 
 import lombok.ToString;
 
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @ToString
-class PostSaleRequest {
+public class PostSaleRequest {
 
     @NotNull
     private Integer customerId;

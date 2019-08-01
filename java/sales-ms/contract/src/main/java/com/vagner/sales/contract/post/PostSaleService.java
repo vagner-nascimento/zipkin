@@ -1,4 +1,4 @@
-package com.vagner.sales.contract;
+package com.vagner.sales.contract.post;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 @Slf4j
 @Service
-class SaleService {
+public class PostSaleService {
 
     @Autowired
     private RestTemplate restTemplate;

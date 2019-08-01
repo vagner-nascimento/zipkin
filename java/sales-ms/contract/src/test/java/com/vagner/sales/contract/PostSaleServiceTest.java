@@ -1,5 +1,8 @@
 package com.vagner.sales.contract;
 
+import com.vagner.sales.contract.post.PostSaleRequest;
+import com.vagner.sales.contract.post.PostSaleResponse;
+import com.vagner.sales.contract.post.PostSaleService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -7,9 +10,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @DisplayName("Contract - SalesFace")
-class SaleServiceTest {
+class PostSaleServiceTest {
 
-    private SaleService service = new SaleService();
+    private PostSaleService service = new PostSaleService();
 
     @Test
     @DisplayName("Whe sent null should return any long")
