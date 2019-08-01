@@ -1,8 +1,5 @@
-package com.vagner.sales.contract.controllers;
+package com.vagner.sales.contract;
 
-import com.vagner.sales.contract.facade.SaleFacade;
-import com.vagner.sales.contract.model.request.PostSale;
-import com.vagner.sales.contract.model.response.PostSaleResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -17,11 +14,11 @@ import javax.validation.Valid;
 public class SaleController {
 
     @Autowired
-    private SaleFacade saleFacade;
+    private SaleService saleFacade;
 
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public PostSaleResponse postSale(@RequestBody @Valid PostSale postSale) {
-        log.info(postSale.toString());
-        return saleFacade.doSale(postSale);
+    public PostSaleResponse postSale(@RequestBody PostSaleRequest postSaleRequest) {
+        log.info(postSaleRequest.toString());
+        return saleFacade.doSale(postSaleRequest);
     }
 }

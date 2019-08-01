@@ -1,4 +1,4 @@
-package com.vagner.sales.contract.model.request;
+package com.vagner.sales.contract;
 
 import lombok.Builder;
 import lombok.ToString;
@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 @ToString
 @Builder
-public class PostSaleProduct {
+class PostSaleProductRequest {
 
     @NotNull
     private Integer id;
@@ -19,10 +19,10 @@ public class PostSaleProduct {
     @NotNull
     private BigDecimal discountValue;
 
-    public PostSaleProduct() {
+    public PostSaleProductRequest() {
     }
 
-    public PostSaleProduct(Integer id, Integer quantity, BigDecimal unitPrice, BigDecimal discountValue) {
+    public PostSaleProductRequest(Integer id, Integer quantity, BigDecimal unitPrice, BigDecimal discountValue) {
         this.id = id;
         this.quantity = quantity;
         this.unitPrice = unitPrice;

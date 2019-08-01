@@ -1,22 +1,21 @@
-package com.vagner.sales.contract.facade;
+package com.vagner.sales.contract;
 
-import com.vagner.sales.contract.model.response.PostSaleResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import com.vagner.sales.contract.model.request.PostSale;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @DisplayName("Contract - SalesFace")
-class SaleFacadeTest {
+class SaleServiceTest {
 
-    private SaleFacade facade = new SaleFacade();
+    private SaleService service = new SaleService();
 
     @Test
     @DisplayName("Whe sent null should return any long")
     public void doSale_WhenSendsNull_ShouldReturnLong() {
 
-        var result = facade.doSale(null);
+        var result = service.doSale(null);
 
         assertNotNull(result);
         assertEquals(PostSaleResponse.class, result.getClass());
@@ -26,7 +25,7 @@ class SaleFacadeTest {
     @DisplayName("Whe sent any data should return any long")
     public void doSale_WhenSendsAnyData_ShouldReturnLong() {
 
-        var result = facade.doSale(new PostSale());
+        var result = service.doSale(new PostSaleRequest());
 
         assertNotNull(result);
         assertEquals(PostSaleResponse.class, result.getClass());

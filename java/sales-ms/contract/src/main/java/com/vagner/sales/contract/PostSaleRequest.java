@@ -1,4 +1,4 @@
-package com.vagner.sales.contract.model.request;
+package com.vagner.sales.contract;
 
 import lombok.ToString;
 
@@ -9,16 +9,16 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @ToString
-public class PostSale {
+class PostSaleRequest {
 
     @NotNull
     private Integer customerId;
     @Valid
     @NotNull
-    private PostSaleDelivery delivery;
+    private PostSaleDeliveryRequest delivery;
     @Valid
     @NotNull
-    private List<PostSaleProduct> products;
+    private List<PostSaleProductRequest> products;
     @NotNull
     private LocalDateTime saleDate;
     @NotNull
@@ -27,16 +27,16 @@ public class PostSale {
     private BigDecimal extraDiscount;
     private String observation;
 
-    public PostSale() {
+    public PostSaleRequest() {
     }
 
-    public PostSale(Integer customerId,
-                    PostSaleDelivery delivery,
-                    List<PostSaleProduct> products,
-                    LocalDateTime saleDate,
-                    Integer creditCardId,
-                    BigDecimal extraDiscount,
-                    String observation) {
+    public PostSaleRequest(Integer customerId,
+                           PostSaleDeliveryRequest delivery,
+                           List<PostSaleProductRequest> products,
+                           LocalDateTime saleDate,
+                           Integer creditCardId,
+                           BigDecimal extraDiscount,
+                           String observation) {
         this.customerId = customerId;
         this.delivery = delivery;
         this.products = products;
@@ -54,11 +54,11 @@ public class PostSale {
         this.customerId = customerId;
     }
 
-    public PostSaleDelivery getDeliveryAddress() {
+    public PostSaleDeliveryRequest getDeliveryAddress() {
         return delivery;
     }
 
-    public void setDeliveryAddress(PostSaleDelivery deliveryAddress) {
+    public void setDeliveryAddress(PostSaleDeliveryRequest deliveryAddress) {
         this.delivery = deliveryAddress;
     }
 
@@ -70,11 +70,11 @@ public class PostSale {
         this.saleDate = saleDate;
     }
 
-    public List<PostSaleProduct> getProducts() {
+    public List<PostSaleProductRequest> getProducts() {
         return products;
     }
 
-    public void setProducts(List<PostSaleProduct> products) {
+    public void setProducts(List<PostSaleProductRequest> products) {
         this.products = products;
     }
 
@@ -86,11 +86,11 @@ public class PostSale {
         this.creditCardId = creditCardId;
     }
 
-    public PostSaleDelivery getDelivery() {
+    public PostSaleDeliveryRequest getDelivery() {
         return delivery;
     }
 
-    public void setDelivery(PostSaleDelivery delivery) {
+    public void setDelivery(PostSaleDeliveryRequest delivery) {
         this.delivery = delivery;
     }
 
@@ -113,7 +113,7 @@ public class PostSale {
     public BigDecimal getTotalPrice() {
 
         BigDecimal totalProducts = this.products.stream()
-                .map(PostSaleProduct::getTotalPrice)
+                .map(PostSaleProductRequest::getTotalPrice)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         return totalProducts.add(this.delivery.getFreightPrice()).subtract(this.extraDiscount);

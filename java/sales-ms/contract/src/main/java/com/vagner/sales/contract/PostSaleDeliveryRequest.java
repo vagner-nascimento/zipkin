@@ -1,4 +1,4 @@
-package com.vagner.sales.contract.model.request;
+package com.vagner.sales.contract;
 
 import lombok.Builder;
 import lombok.ToString;
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @ToString
 @Builder
-public class PostSaleDelivery {
+class PostSaleDeliveryRequest {
 
     @NotNull
     private Integer addressId;
@@ -18,10 +18,10 @@ public class PostSaleDelivery {
     @NotNull
     private BigDecimal freightPrice;
 
-    public PostSaleDelivery() {
+    public PostSaleDeliveryRequest() {
     }
 
-    public PostSaleDelivery(Integer addressId, LocalDateTime deliveryDate, BigDecimal freightPrice) {
+    public PostSaleDeliveryRequest(Integer addressId, LocalDateTime deliveryDate, BigDecimal freightPrice) {
         this.addressId = addressId;
         this.deliveryDate = deliveryDate;
         this.freightPrice = freightPrice;

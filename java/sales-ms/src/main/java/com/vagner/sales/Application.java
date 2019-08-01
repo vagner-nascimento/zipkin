@@ -16,7 +16,7 @@ public class Application extends SpringBootServletInitializer {
 
     //TODO:
     // NOTE: The rest template should be SINGLETON.
-    // Other way the Sleuth cant get agroup the trace's informations.
+    // Other way the Sleuth cant get merge trace's informations.
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder templateBuilder) {
         return templateBuilder.build();
