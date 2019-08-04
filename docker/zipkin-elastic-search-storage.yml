@@ -1,28 +1,8 @@
 version: '3'
 
 services:
-  # The zipkin process services the UI, and also exposes a POST endpoint that
-  # instrumentation can send trace data to. Scribe is disabled by default.
-  zipkin:
-    image: zipkin
-    container_name: zipkin
-    environment:
-      - RABBIT_ADDRESSES=rabbitmq:5672
-      # Set storage type
-      - STORAGE_TYPE=elasticsearch
-      # Point the zipkin at the storage backend
-      - ES_HOSTS=elasticsearch
-    ports:
-      # Port used for the Zipkin UI and HTTP Api
-      - ${ZIPKIN_PORT:-9411}:9411
-    depends_on:
-      - rabbitmq
-      - storage
-    links:
-      - rabbitmq
-
   rabbitmq:
-    image: rabbitmq:3.7.15-management-alpine
+    image: rabbitmq:management
     container_name: rabbitmq
     ports:
       - ${RABBIT_PORT:-5672}:5672
@@ -44,8 +24,23 @@ services:
       - discovery.type=single-node
     volumes:
       - dbfiles:/elasticsearch/data
-    # Uncomment to restart if it get down
-    # restart: unless-stopped
+
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    restart: on-failure
+    environment:
+      - RABBIT_ADDRESSES=rabbitmq:5672
+      - STORAGE_TYPE=elasticsearch
+      - ES_HOSTS=elasticsearch
+    ports:
+      - ${ZIPKIN_PORT:-9411}:9411
+    depends_on:
+      - rabbitmq
+      - storage
+    links:
+      - rabbitmq
+      - storage
 
 volumes:
   dbfiles:
