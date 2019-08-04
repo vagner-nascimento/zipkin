@@ -1,11 +1,24 @@
 version: '3'
 
 services:
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    ports:
+      - ${RABBIT_PORT:-5672}:5672
+      - ${RABBIT_PORT:-15672}:15672
+    healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:15672"]
+        interval: 30s
+        timeout: 10s
+        retries: 5
+
   # The zipkin process services the UI, and also exposes a POST endpoint that
   # instrumentation can send trace data to. Scribe is disabled by default.
   zipkin:
     image: openzipkin/zipkin
     container_name: zipkin
+    restart: on-failure
     environment:
       - RABBIT_ADDRESSES=rabbitmq:5672
     ports:
@@ -13,10 +26,5 @@ services:
       - ${ZIPKIN_PORT:-9411}:9411
     depends_on:
       - rabbitmq
-
-  rabbitmq:
-    image: rabbitmq:management
-    container_name: rabbitmq
-    ports:
-      - ${RABBIT_PORT:-5672}:5672
-      - ${RABBIT_PORT:-15672}:15672
+    links:
+      - rabbitmq
