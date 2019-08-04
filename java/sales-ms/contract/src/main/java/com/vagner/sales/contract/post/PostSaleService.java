@@ -1,9 +1,7 @@
 package com.vagner.sales.contract.post;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -11,10 +9,15 @@ import java.util.concurrent.ThreadLocalRandom;
 @Service
 public class PostSaleService {
 
-    @Autowired
-    private RestTemplate restTemplate;
+    private PostSaleFacade customerFacade;
+
+    public PostSaleService(PostSaleFacade customerFacade) {
+        this.customerFacade = customerFacade;
+    }
 
     public PostSaleResponse doSale(PostSaleRequest postSaleRequest) {
+
+        customerFacade.evaluateCustomer().accept(postSaleRequest.getCustomerId());
 
         return PostSaleResponse.builder()
                 .orderNumber(Math.abs(ThreadLocalRandom.current().nextLong()))

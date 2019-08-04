@@ -1,20 +1,16 @@
-package com.vagner.customers.contract.get;
-
-import lombok.Builder;
+package com.vagner.sales.implementation.customer;
 
 import java.time.LocalDateTime;
 
-@Builder
-public class GetCustomerResponse {
-
+public class CustomerEntity {
     private Integer customerId;
     private String customerName;
     private LocalDateTime deactivationDate;
 
-    public GetCustomerResponse() {
+    public CustomerEntity() {
     }
 
-    public GetCustomerResponse(Integer customerId, String customerName, LocalDateTime deactivationDate) {
+    public CustomerEntity(Integer customerId, String customerName, LocalDateTime deactivationDate) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.deactivationDate = deactivationDate;

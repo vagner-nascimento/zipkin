@@ -10,6 +10,7 @@ public class GetCustomerService {
         return GetCustomerResponse.builder()
                 .customerId(customerId)
                 .customerName("Mr. Gatsby")
+                .deactivationDate(null)
                 .build();
     }
 }
