@@ -1,3 +1,6 @@
 module.exports = {
-    httpPort: 8082
+    http: {  
+        port: 8082,
+        ssl: require('./ssl')
+    }
 }

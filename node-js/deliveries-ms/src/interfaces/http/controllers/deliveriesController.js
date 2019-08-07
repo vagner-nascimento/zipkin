@@ -13,7 +13,7 @@ const deliveriesController = {
     create(req, res, next) {
 
         try {
-            log.info('req.body', req.body);
+            console.log('req.body', req.body);
             
             res
                 .status(httpStatus.CREATED)
