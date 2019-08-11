@@ -17,7 +17,9 @@ public class PostSaleService {
 
     public PostSaleResponse doSale(PostSaleRequest postSaleRequest) {
 
-        customerFacade.evaluateCustomer().accept(postSaleRequest.getCustomerId());
+        customerFacade.evaluateCustomer()
+                .andThen(customerFacade.saveDelivery())
+                .accept(postSaleRequest);
 
         return PostSaleResponse.builder()
                 .orderNumber(Math.abs(ThreadLocalRandom.current().nextLong()))

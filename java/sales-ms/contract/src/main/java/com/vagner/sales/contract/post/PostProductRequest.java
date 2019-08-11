@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 @ToString
 @Builder
-class PostSaleProductRequest {
+class PostProductRequest {
 
     @NotNull
     private Integer id;
@@ -19,10 +19,10 @@ class PostSaleProductRequest {
     @NotNull
     private BigDecimal discountValue;
 
-    public PostSaleProductRequest() {
+    public PostProductRequest() {
     }
 
-    public PostSaleProductRequest(Integer id, Integer quantity, BigDecimal unitPrice, BigDecimal discountValue) {
+    public PostProductRequest(Integer id, Integer quantity, BigDecimal unitPrice, BigDecimal discountValue) {
         this.id = id;
         this.quantity = quantity;
         this.unitPrice = unitPrice;

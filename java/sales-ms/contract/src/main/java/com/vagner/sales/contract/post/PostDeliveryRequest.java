@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @ToString
 @Builder
-class PostSaleDeliveryRequest {
+class PostDeliveryRequest {
 
     @NotNull
     private Integer addressId;
@@ -18,10 +18,10 @@ class PostSaleDeliveryRequest {
     @NotNull
     private BigDecimal freightPrice;
 
-    public PostSaleDeliveryRequest() {
+    public PostDeliveryRequest() {
     }
 
-    public PostSaleDeliveryRequest(Integer addressId, LocalDateTime deliveryDate, BigDecimal freightPrice) {
+    public PostDeliveryRequest(Integer addressId, LocalDateTime deliveryDate, BigDecimal freightPrice) {
         this.addressId = addressId;
         this.deliveryDate = deliveryDate;
         this.freightPrice = freightPrice;

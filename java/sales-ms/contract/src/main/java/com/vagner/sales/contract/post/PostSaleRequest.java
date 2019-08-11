@@ -15,10 +15,10 @@ public class PostSaleRequest {
     private Integer customerId;
     @Valid
     @NotNull
-    private PostSaleDeliveryRequest delivery;
+    private PostDeliveryRequest delivery;
     @Valid
     @NotNull
-    private List<PostSaleProductRequest> products;
+    private List<PostProductRequest> products;
     @NotNull
     private LocalDateTime saleDate;
     @NotNull
@@ -31,8 +31,8 @@ public class PostSaleRequest {
     }
 
     public PostSaleRequest(Integer customerId,
-                           PostSaleDeliveryRequest delivery,
-                           List<PostSaleProductRequest> products,
+                           PostDeliveryRequest delivery,
+                           List<PostProductRequest> products,
                            LocalDateTime saleDate,
                            Integer creditCardId,
                            BigDecimal extraDiscount,
@@ -54,11 +54,11 @@ public class PostSaleRequest {
         this.customerId = customerId;
     }
 
-    public PostSaleDeliveryRequest getDeliveryAddress() {
+    public PostDeliveryRequest getDeliveryAddress() {
         return delivery;
     }
 
-    public void setDeliveryAddress(PostSaleDeliveryRequest deliveryAddress) {
+    public void setDeliveryAddress(PostDeliveryRequest deliveryAddress) {
         this.delivery = deliveryAddress;
     }
 
@@ -70,11 +70,11 @@ public class PostSaleRequest {
         this.saleDate = saleDate;
     }
 
-    public List<PostSaleProductRequest> getProducts() {
+    public List<PostProductRequest> getProducts() {
         return products;
     }
 
-    public void setProducts(List<PostSaleProductRequest> products) {
+    public void setProducts(List<PostProductRequest> products) {
         this.products = products;
     }
 
@@ -86,11 +86,11 @@ public class PostSaleRequest {
         this.creditCardId = creditCardId;
     }
 
-    public PostSaleDeliveryRequest getDelivery() {
+    public PostDeliveryRequest getDelivery() {
         return delivery;
     }
 
-    public void setDelivery(PostSaleDeliveryRequest delivery) {
+    public void setDelivery(PostDeliveryRequest delivery) {
         this.delivery = delivery;
     }
 
@@ -113,7 +113,7 @@ public class PostSaleRequest {
     public BigDecimal getTotalPrice() {
 
         BigDecimal totalProducts = this.products.stream()
-                .map(PostSaleProductRequest::getTotalPrice)
+                .map(PostProductRequest::getTotalPrice)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         return totalProducts.add(this.delivery.getFreightPrice()).subtract(this.extraDiscount);

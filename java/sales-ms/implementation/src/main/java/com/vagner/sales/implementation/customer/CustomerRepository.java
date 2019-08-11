@@ -1,47 +1,27 @@
 package com.vagner.sales.implementation.customer;
 
+import com.vagner.sales.implementation.data.BaseRepository;
+import com.vagner.sales.implementation.data.rest.RestClient;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.Objects;
 
 @Slf4j
 @Repository
-class CustomerRepository {
+class CustomerRepository extends RestClient implements BaseRepository {
 
-    private RestTemplate restTemplate;
-
-    public CustomerRepository(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
+    public CustomerRepository() {
+        super(":8081/customers/");
     }
 
-    @Value("${ms.base.url}")
-    private String BASE_URL;
-    private final String CUSTOMER_URL = ":8081/customers/";
+    @Override
+    public <P> CustomerEntity get(P customerId) {
 
-    public Boolean isCustomerActive(Integer customerId) {
+        return this.callGet(customerId.toString(), CustomerEntity.class).orElse(null);
+    }
 
-        try {
-            var path = String.format("%s%s%s", BASE_URL, CUSTOMER_URL, customerId);
-            var response = restTemplate.getForEntity(path, CustomerEntity.class).getBody();
+    @Override
+    public <E> CustomerEntity save(E entity) {
 
-            return Objects.isNull(response.getDeactivationDate());
-        } catch (HttpClientErrorException httpEx) {
-
-            if (httpEx.getStatusCode().equals(HttpStatus.NOT_FOUND)) return false;
-
-            log.error("Error", httpEx);
-
-            throw httpEx;
-        } catch (Exception ex) {
-
-            log.error("Error", ex);
-
-            throw ex;
-        }
+        throw new RuntimeException("Not implemented yet");
     }
 }
