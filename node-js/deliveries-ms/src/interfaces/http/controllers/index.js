@@ -1,3 +1,3 @@
 module.exports = Array.of(
-    require('../../../../src/interfaces/http/controllers/deliveriesController')
+    require('src/interfaces/http/controllers/deliveriesController')
 );

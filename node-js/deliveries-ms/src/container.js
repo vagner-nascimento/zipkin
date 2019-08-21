@@ -1,13 +1,13 @@
 const { createContainer, asClass, asFunction, asValue } = require('awilix');
 
-const controllers = require('./interfaces/http/controllers');
-const router = require('./interfaces/http/router');
-const Server = require('./interfaces/http/Server');
+const controllers = require('src/interfaces/http/controllers');
+const router = require('src/interfaces/http/router');
+const Server = require('src/interfaces/http/Server');
 
-const Application = require('./app/Application');
-const CreateDeliveryOperation = require('./app/operation/CreateDeliveryOperation');
+const Application = require('src/app/Application');
+const CreateDeliveryOperation = require('src/app/operation/CreateDeliveryOperation');
 
-const LocationService = require('./domain/service/LocationService');
+const LocationService = require('src/domain/service/LocationService');
 
 const config = require('../config');
 

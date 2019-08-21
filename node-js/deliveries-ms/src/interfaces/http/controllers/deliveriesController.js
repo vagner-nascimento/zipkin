@@ -10,14 +10,14 @@ const deliveriesController = {
         return router;
     },
 
-    create: (req, res, next) => { //Figure out how to inject operation here and how to call requires always starting with 'src/'
+    create: (req, res, next) => { //Figure out how to inject operation here
 
         try {
             console.log('req.body', req.body);
-           
+            const delivery = { its_everything: 'OK' };
             res
                 .status(httpStatus.CREATED)
-                .json(delivery.toJSON());
+                .json(delivery);
         } catch (error) {
             console.log('error', error);
             next;

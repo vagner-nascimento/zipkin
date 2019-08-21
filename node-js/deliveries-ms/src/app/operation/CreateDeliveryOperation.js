@@ -1,4 +1,4 @@
-const DeliveryModel = require('../../domain/model/DeliveryModel');
+const DeliveryModel = require('src/domain/model/DeliveryModel');
 
 class CreateDeliveryOperation {
      
