@@ -9,15 +9,15 @@
   "author": "Vagner Nascimento",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
-    "awilix": "^4.2.2",
-    "awilix-express": "^2.1.1",
-    "helmet": "^3.20.0",
-    "spdy": "^4.0.1",
-    "body-parser": "^1.19.0",
-    "compression": "^1.7.4",
-    "method-override": "^3.0.0",
-    "cors": "^2.8.5",
-    "http-status": "^1.3.1"
+    "express": "4.17.1",
+    "awilix": "4.2.2",
+    "awilix-express": "2.1.1",
+    "helmet": "3.20.0",
+    "spdy": "4.0.1",
+    "body-parser": "1.19.0",
+    "compression": "1.7.4",
+    "method-override": "3.0.0",
+    "cors": "2.8.5",
+    "http-status": "1.3.1"
   }
 }

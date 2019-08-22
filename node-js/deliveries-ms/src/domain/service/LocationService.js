@@ -2,7 +2,7 @@ class LocationService {
 
     isValidAddress(addressId) {
 
-        return true;//here i'll call another node ms
+        return true; //TODO: i'll call another node ms here
     }
 }
 

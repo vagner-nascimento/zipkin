@@ -1,4 +1,5 @@
 const { createContainer, asClass, asFunction, asValue } = require('awilix');
+const { scopePerRequest } = require('awilix-express');
 
 const controllers = require('src/interfaces/http/controllers');
 const router = require('src/interfaces/http/router');
@@ -28,5 +29,10 @@ container
     .register({ Server: asClass(Server).singleton() })
     .register({ LocationService: asClass(LocationService).singleton() })
     .register({ CreateDeliveryOperation: asClass(CreateDeliveryOperation) });
+
+// Middlewares
+container.register({
+    containerMiddleware: asValue(scopePerRequest(container))
+});
 
 module.exports = container;
