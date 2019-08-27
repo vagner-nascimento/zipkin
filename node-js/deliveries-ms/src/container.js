@@ -8,7 +8,9 @@ const Server = require('src/interfaces/http/Server');
 const Application = require('src/app/Application');
 const CreateDeliveryOperation = require('src/app/operation/CreateDeliveryOperation');
 
-const LocationService = require('src/domain/service/LocationService');
+const LocationService = require('src/app/services/LocationService');
+
+const LocationClient = require('src/interfaces/http/client/LocationClient');
 
 const config = require('../config');
 
@@ -28,7 +30,8 @@ container
     .register({ Application: asClass(Application).singleton() })
     .register({ Server: asClass(Server).singleton() })
     .register({ LocationService: asClass(LocationService).singleton() })
-    .register({ CreateDeliveryOperation: asClass(CreateDeliveryOperation) });
+    .register({ CreateDeliveryOperation: asClass(CreateDeliveryOperation) })
+    .register({ LocationClient: asClass(LocationClient).singleton() })
 
 // Middlewares
 container.register({

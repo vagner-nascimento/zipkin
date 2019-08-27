@@ -11,7 +11,7 @@ class CreateDeliveryOperation {
 
         const deliveryModel = new DeliveryModel(delivery);
 
-        if(!this.locationService.isValidAddress(deliveryModel.addressId))
+        if(!await this.locationService.isValidAddress(deliveryModel.addressId))
             throw new Error('Invalid address');
         
         return deliveryModel;
