@@ -4,13 +4,10 @@ const { scopePerRequest } = require('awilix-express');
 const controllers = require('src/interfaces/http/controllers');
 const router = require('src/interfaces/http/router');
 const Server = require('src/interfaces/http/Server');
-
 const Application = require('src/app/Application');
 const CreateDeliveryOperation = require('src/app/operation/CreateDeliveryOperation');
-
 const LocationService = require('src/app/services/LocationService');
-
-const LocationClient = require('src/interfaces/http/client/LocationClient');
+const LocationClient = require('src/interfaces/http/clients/LocationClient');
 
 const config = require('../config');
 

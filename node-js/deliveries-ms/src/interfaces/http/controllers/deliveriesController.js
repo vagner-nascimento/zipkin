@@ -18,8 +18,8 @@ const deliveriesController = {
             const delivery = await CreateDeliveryOperation.execute(req.body);
 
             res
-                .status(httpStatus.CREATED)
-                .json(delivery);
+               .status(httpStatus.CREATED)
+               .json(delivery);
         } catch (error) {
             console.log('error', error);
             next;
